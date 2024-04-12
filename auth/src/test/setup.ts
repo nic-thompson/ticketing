@@ -9,8 +9,8 @@ beforeAll(async () => {
   const mongo = await MongoMemoryServer.create();
   const mongoUri = mongo.getUri();
 
-  await mongoose.connect(mongoUri, {});
-});
+  await mongoose.connect(mongoUri);
+}, 10000);
 
 beforeEach(async () => {
   const collections = await mongoose.connection.db.collections();
