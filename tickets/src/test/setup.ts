@@ -39,7 +39,7 @@ global.signin = () => {
       JSON.stringify({
         jwt: jwt.sign(
           {
-            id: '1lk24j1l2k4j',
+            id: new mongoose.Types.ObjectId().toHexString(),
             email: 'test@test.com',
           },
           process.env.JWT_KEY!
