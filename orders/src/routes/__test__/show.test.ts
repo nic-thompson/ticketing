@@ -1,6 +1,6 @@
+import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../../app';
-import mongoose from 'mongoose';
 import { Order } from '../../models/order';
 import { Ticket } from '../../models/ticket';
 import { OrderStatus } from '@nicolas.thompson/common';
@@ -9,6 +9,7 @@ import { natsWrapper } from '../../nats-wrapper';
 it('fetches the order', async () => {
   // Create a ticket
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });
@@ -36,6 +37,7 @@ it('fetches the order', async () => {
 it('returns an error if one user tries to fetch another users order', async () => {
   // Create a ticket
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });
