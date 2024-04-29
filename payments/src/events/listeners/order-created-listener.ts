@@ -2,6 +2,7 @@ import { Message } from 'node-nats-streaming';
 import {
   Listener,
   OrderCreatedEvent,
+  OrderStatus,
   Subjects,
 } from '@nicolas.thompson/common';
 import { queueGroupName } from './queue-group-name';
@@ -15,7 +16,7 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
     const order = Order.build({
       id: data.id,
       price: data.ticket.price,
-      status: data.status,
+      status: data.status as OrderStatus,
       userId: data.userId,
       version: data.version,
     });
