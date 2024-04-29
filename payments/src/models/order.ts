@@ -34,8 +34,6 @@ const orderSchema = new mongoose.Schema(
     status: {
       type: String,
       required: true,
-      enum: Object.values(OrderStatus),
-      default: OrderStatus.Created,
     },
   },
   {
@@ -55,8 +53,8 @@ orderSchema.statics.build = (attrs: OrderAttrs) => {
   return new Order({
     _id: attrs.id,
     version: attrs.version,
-    userId: attrs.userId,
     price: attrs.price,
+    userId: attrs.userId,
     status: attrs.status,
   });
 };
