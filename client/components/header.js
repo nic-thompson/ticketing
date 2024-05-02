@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import tessera from '../assets/qr.png';
 
 export default ({ currentUser }) => {
   const links = [
@@ -22,7 +24,10 @@ export default ({ currentUser }) => {
   return (
     <nav className="navbar navbar-light bg-light">
       <Link className="navbar-brand" href="/">
-        <h1>TESSERA</h1>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Image src={tessera} width={100} height={100} alt="Tessera" />
+          <h1 style={{ marginLeft: '0.5rem', marginBottom: '0' }}>TESSERA</h1>
+        </div>
       </Link>
       <div className="d-flex justify-content-end">
         <ul className="nav d-flex align-items-center">{links}</ul>
