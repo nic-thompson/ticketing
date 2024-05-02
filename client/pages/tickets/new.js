@@ -1,6 +1,25 @@
 import { useState } from 'react';
+import Router from 'next/router';
+import useRequest from '../../hooks/use-request';
 
 const NewTicket = () => {
+  const [title, setTitle] = useState('');
+  const [price, setPrice] = useState('');
+  const { doRequest, errors } = useRequest({
+    url: '/api/tickets',
+    method: 'post',
+    body: {
+      title,
+      price,
+    },
+    onSuccess: () => Router.push('/'),
+  });
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    doRequest();
+  };
+
   const blur = () => {
     const value = parseFloat(price);
     if (isNaN(value)) {
@@ -9,12 +28,10 @@ const NewTicket = () => {
 
     setPrice(value.toFixed(2));
   };
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState('');
   return (
     <div>
       <h1>Create a new ticket</h1>
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="form-group">
           <label>Title</label>
           <input
@@ -32,6 +49,7 @@ const NewTicket = () => {
             className="form-control"
           />
         </div>
+        {errors}
         <button className="btn btn-primary">Submit</button>
       </form>
     </div>
