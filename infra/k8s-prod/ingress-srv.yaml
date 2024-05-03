@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: www.tessera-tickets.store
+    - host: tessera-tickets.store
       http:
         paths:
           - path: /api/payments/?(.*)
